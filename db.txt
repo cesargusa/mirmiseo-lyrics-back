@@ -1,0 +1,18 @@
+Usuarios
+    Id
+    Nombre
+    Apellidos
+    Email
+    Telefono
+    Contraseña
+    Imagen_Perfil
+    Fecha_Creacion
+    Ultima_Conexion
+    Ciudad
+    Pais
+    IsConfirmed
+    IsVerificado
+    UrlTwitter
+    UrlInstagram
+    UrlSpotify
+    IsOnline

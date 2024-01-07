@@ -1,0 +1,41 @@
+INSERT INTO users  VALUES (
+  1,
+  "cesargusa",
+  "PruebaBot22",
+  "Cesar",
+  "Gutierrez",
+  "cessargusa22@gmail.com",
+  "+34722709600",
+  NULL,
+  "2023-04-10 10:39:37",
+  "2023-04-10 10:39:37",
+  "Zaragoza",
+  "España",
+  FALSE,
+  FALSE,
+  NULL,
+  NULL,
+  NULL,
+  TRUE
+);
+
+INSERT INTO users  VALUES (
+  2,
+  "lorenitasilo",
+  "PruebaBot22",
+  "Lorena",
+  "Sisamon",
+  "lorenasisamon@gmail.com",
+  "+3476347209",
+  NULL,
+  "2023-04-10 10:39:37",
+  "2023-04-10 10:39:37",
+  "Zaragoza",
+  "España",
+  FALSE,
+  FALSE,
+  NULL,
+  NULL,
+  NULL,
+  TRUE
+);

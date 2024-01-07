@@ -1,0 +1,24 @@
+DROP TABLE IF EXISTS users;
+
+
+
+CREATE TABLE  users (
+    Id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    UserName VARCHAR(150) NOT NULL UNIQUE,
+    Password VARCHAR(100) NOT NULL,
+	 NameUser VARCHAR(150) NULL,
+	 LastName VARCHAR(150) NULL,
+	 Email VARCHAR(50)  NOT NULL UNIQUE,
+	 Phone VARCHAR(30) NOT NULL,
+	 UrlProfile VARCHAR(250) NULL,
+	 Creation_Date TIMESTAMP,
+	 Last_Connection TIMESTAMP,
+	 City VARCHAR(50) NULL,
+	 Country VARCHAR(50) NULL,
+	 IsConfirmed BOOL NOT NULL,
+	 IsVerified BOOL NOT NULL,
+	 UrlTwitter VARCHAR(250) NULL,
+    UrlInstagram VARCHAR(250) NULL,
+    UrlSpotify VARCHAR(250) NULL,
+    IsOnline VARCHAR(250) NULL
+);

@@ -4,8 +4,10 @@ const userController = require('../controller/UsersController')
 
 router.get('/', userController.GetUsers);
 router.get('/:userId', userController.GetUserById);
-router.post('/GetUsersByEmail', userController.GetUsersByEmail);
+router.post('/GetUsersByEmail', userController.GetUsersByEmailApi);
+// router.post('/GetUsersByEmail', userController.GetUsersByEmail);
 router.post('/GetUsersByUserName', userController.GetUsersByUserName);
+router.post('/Login', userController.Login);
 // router.post('/IfExistUserName', userController.IfExistUserName);
 router.post('/Register', userController.Register);
 // router.get('/:city', userController.GetUserByCity)

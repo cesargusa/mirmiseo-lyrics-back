@@ -1,5 +1,6 @@
 // const mail = require('nodemailer/lib/mailer')
 const connection = require('../connection/connection')
+// const UserSEmailPasswordDTO = require('../DTO/Users/UsersEmailPasswordDTO.ts')
 
 
 
@@ -51,8 +52,22 @@ exports.GetUsers = (req, res) => {
         res.status(500).send(`Ocurrió un error interno en el servidor - ${error}`);
     }
 };
+exports.GetUsersByEmail = (email) => {
+    return new Promise((resolve, reject) => {
+        const sql = 'SELECT * FROM users WHERE Email = ?';
+        connection.query(sql, [email], (error, results, fields) => {
+            if (error) {
+                console.log(error);
+                reject(error);
+            } else {
+                resolve(results);  // Resolver con el arreglo completo de resultados
+            }
+        });
+    });
+};
 
-exports.GetUsersByEmail = (req,res) => {
+
+exports.GetUsersByEmailApi = (req,res) => {
     const email = req.body.email;
     const sql = 'SELECT * FROM users WHERE Email = ?'
     connection.query(sql, [email], (error, results, fields) => {
@@ -141,14 +156,35 @@ exports.Register = async (req, res) => {
         else {
             connection.query(sql, [Id,UserName, Password, NameUser, LastName, Email, Phone, UrlProfile, Creation_Date, Last_Connection, City, Country, IsConfirmed, IsVerified, UrlTwitter, Urlinstagram, UrlSpotify, IsOnline], (error, results, fields) => {
                 if (error) res.json({ "message": "Fallo la consulta" });
-                else res.json({ "message": "Usuario creado correctamente" });
+                else res.json({ "message": "Usuario " + UserName +"creado correctamente" });
             });
         }
     } catch (error) {
         res.status(500).send(error);
     }
 };
+exports.Login = async (req,res) => {
+    const email = req.body.email;
+    console.log(email)
+    const password = req.body.password;
+    const existsEmail = await this.IfExistEmail(email);
 
+console.log(existsEmail)
+    if(existsEmail){
+        const sql = 'SELECT COUNT(EMAIL) AS count FROM users WHERE Email = ? AND Password = ? ';
+        connection.query(sql,[email,password],async (error, results, fields ) =>{
+            if(results[0].count > 0){
+                var user =  await this.GetUsersByEmail(email)
+                console.log({id:user[0].Id,email:user[0].email,userName:user[0].userName})
+                res.json({id:user[0].Id,email:user[0].Email,userName:user[0].UserName, message:"Login correcto"})
+          
+            }else  res.json({message:"Usuario y contraseña incorrectas"})
+        })
+    }else {
+        res.json({message:"El usuario no existe"})
+    }
+
+}
 
 // //CREATE
 // exports.CreateUser = (req, res) => {
